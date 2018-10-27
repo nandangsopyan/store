@@ -1,0 +1,52 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Category List</div>
+  <div class="card-body">
+    <div class="table-responsive">
+    <table id="dataTable" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Category Description</th>
+                    <th>Category Keywords</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+              <% @categories.each do | category | %>
+                <tr>
+                  <td><%= category.name %></td>
+                  <td><%= category.description %></td>
+                  <td><%= category.category_keyword %></td>
+                  <td><%= link_to edit_backend_category_path(category) do %>
+                    <i class="far fa-edit" data-toggle="tooltip" data-placement="top" title="Edit Product?"></i>
+                  <% end %>| <%= link_to backend_category_path(category), method: :delete, data: {confirm: 'Are you sure delete this category?'} do %>
+                    <i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Delete Product?"></i>
+                  <% end %>
+
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Category Description</th>
+                    <th>Category Keywords</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+    $('#dataTable').DataTable();
+} );
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+</script>

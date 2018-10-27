@@ -1,0 +1,29 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <%= link_to root_path do %>
+      <i class="fas fa-home"></i> 
+    <% end %>
+    :: <%= link_to 'Profile', profile_home_index_path %>
+  </div>
+  <!-- <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt=""> -->
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126832.72302479878!2d106.74290710478945!3d-6.581766425391143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c42bfcabe955%3A0xa6022170b422966!2sPT.+Pusat+Media+Indonesia!5e0!3m2!1sen!2sid!4v1534519798081" ></iframe>
+  </div>
+<% @store_profile.each do | store_profile | %>
+  <div class="card-body">
+    <h3 class="card-title">Tentang Kami</h3>
+    <p><%= simple_format(store_profile.about) %></p>
+  </div>
+</div>
+<!-- /.card -->
+
+<div class="card card-outline-secondary my-4">
+  <div class="card-header">
+    <i class="fas fa-phone-square"></i> Kontak 
+  </div>
+  <div class="card-body">
+    <p><%= simple_format(store_profile.contact) %></p>
+  </div>
+</div>
+<!-- /.card -->
+<% end %>

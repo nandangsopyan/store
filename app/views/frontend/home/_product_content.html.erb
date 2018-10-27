@@ -1,0 +1,33 @@
+<div class="row">
+  <% @products.each do | product | %>
+    <% if product.published? %>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <%= link_to home_path(product) do %>
+            <!-- gambar produk 700x400 -->
+            <!-- <img class="card-img-top" src="http://placehold.it/700x400" alt=""> -->
+            <%#= image_tag(product.image_url.to_s, class: 'card-img-top', alt: product.product_keyword) %>
+            <% if product.images.first.nil? %>
+              <%= image_tag('default-image.jpg', class: 'card-img-top', alt: product.product_keyword) %>
+            <% else %>
+            <%= image_tag(product.images.first.image_url.to_s, class: 'card-img-top', alt: product.product_keyword) %>
+            <% end %>
+          <% end %>
+          <div class="card-body">
+            <h1 class="card-title">
+              <h2><%= link_to product.title.titleize, home_path(product) %></h2>
+            </h1>
+            <h5><%= number_to_currency(product.price, unit: 'Rp ', separator: ',', delimiter:'.') %></h5>
+            <!-- <p class="card-text">short description</p> -->
+          </div>
+    <!--
+          <div class="card-footer">
+            <small class="text-muted">Shop name</small>
+          </div>
+    -->
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

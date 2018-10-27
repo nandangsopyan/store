@@ -1,0 +1,2 @@
+class StoreProfile < ApplicationRecord
+end

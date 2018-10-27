@@ -1,0 +1,56 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Product List</div>
+  <div class="card-body">
+    <div class="table-responsive">
+    <table id="dataTable" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Product Title</th>
+                    <th>Product Price</th>
+                    <th>Product Category</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+              <% @products.each do | product | %>
+                <tr>
+                  <td><%= product.title %></td>
+                  <td><%= number_to_currency(product.price, unit: 'Rp ', separator: ',', delimiter: '.') %></td>
+                  <td><%= raw(product.categories.map{ |c| raw(link_to(c.name.titleize, category_path(c)))}.join(', ')) %></td>
+                  <td><%= product.published? ? 'Publised' : 'Draft' %></td>
+                  <td><%= link_to edit_backend_product_path(product) do %>
+                    <i class="far fa-edit" data-toggle="tooltip" data-placement="top" title="Edit Product?"></i>
+                  <% end %>| <%= link_to backend_product_path(product), method: :delete, data: {confirm: 'Are you sure delete this product?'} do %>
+                    <i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Delete Product?"></i>
+                  <% end %>
+
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Product Title</th>
+                    <th>Product Price</th>
+                    <th>Product Category</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+<script>
+$(document).ready(function() {
+    $('#dataTable').DataTable();
+} );
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+</script>

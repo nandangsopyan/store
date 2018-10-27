@@ -1,0 +1,23 @@
+<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <% @sliders.each_with_index do | slider, n | %>
+      <div class="carousel-item <%= n == 0 ? 'active' : '' %>">
+        <!-- gambar slider ukuran 900x350 -->
+        <a href="<%= slider.url %>" ><%= image_tag(slider.image_url.to_s, class: 'd-block img-fluid', alt: "#{slider.image_alt}" ) %></a>
+      </div>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

@@ -1,0 +1,61 @@
+<div class="card mx-auto mt-5">
+  <div class="card-header">Add New Product</div>
+  <div class="card-body">
+    <%= form_for [:backend, @product], html: {multiplepart:true}  do | product | %>
+      <div class="form-group">
+        <%= product.label :title %>
+        <%= product.text_field :title, class:'form-control', placeholder:'Product Title', required: 'required', autofocus: 'autofocus' %>
+      </div>
+
+      <div class="form-group">
+        <%= product.label :price %>
+        <%= product.number_field :price, step:'0.1', class:'form-control', placeholder:'Product Price', required:'required' %>
+      </div>
+
+      <div class="form-group">
+        <%= product.label :description %>
+        <%= product.text_area :description, class:'form-control', placeholder:'Product Description', rows: 8, required:'required' %>
+      </div>
+
+      <div class="form-group">
+        <%= product.label :specification %>
+        <%= product.text_area :specification, class:'form-control', placeholder:'Specification', rows: 5, required:'required' %>
+      </div>
+
+      <div class="form-group">
+        <%= product.label :product_keyword %>
+        <%= product.text_field :product_keyword, class:'form-control', placeholder:'Product Keyword. Pisahkan dengan tanda koma (,)' %>
+      </div>
+
+      <div class="form-group">
+        Category :
+        <% @categories.each do | c | %>
+          <%= check_box_tag c.id, c.id, @product.categories.include?(c), name: 'product[category_ids][]' %>
+          <%= label_tag c.id, c.name %>
+        <% end %>
+      </div>
+
+      <%= product.fields_for :image do |i| %>
+      <div class="form-group">
+        <%= product.label :image %>
+        <%= product.file_field :image, multiple: true, name: "images[image][]" %>
+      </div>
+    <% end %>
+
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-4">
+            <%= product.submit :Publish, name: 'publish', class: 'btn btn-success btn-block' %>
+          </div>
+          <div class="col-md-4">
+            <%= product.submit :Draft, name: 'draft', class: 'btn btn-primary btn-block' %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'Back', backend_products_path, class: 'btn btn-secondary btn-block' %>
+          </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

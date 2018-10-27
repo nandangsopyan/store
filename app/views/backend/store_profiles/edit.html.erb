@@ -1,0 +1,28 @@
+<div class="card mx-auto mt-5">
+  <div class="card-header">Store Profile</div>
+  <div class="card-body">
+    <%= form_for [:backend, @store_profile] do | store_profile | %>
+      <div class="form-group">
+        <%= store_profile.label :about %>
+        <%= store_profile.text_area :about, class:'form-control', rows: 5, placeholder:'About', required: 'required', autofocus: 'autofocus' %>
+      </div>
+
+      <div class="form-group">
+        <%= store_profile.label :contact %>
+        <%= store_profile.text_area :contact, class:'form-control', rows: 5, placeholder:'Contact' %>
+      </div>
+
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-4">
+            <%= store_profile.submit :Save, name: 'save', class: 'btn btn-success btn-block' %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'Back', backend_store_profiles_path, class: 'btn btn-secondary btn-block' %>
+          </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

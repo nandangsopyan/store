@@ -1,0 +1,42 @@
+<div class="card mx-auto mt-5">
+  <div class="card-header">Site Identity</div>
+  <div class="card-body">
+    <%= form_for [:backend, @site_identity] do | site_identity | %>
+      <div class="form-group">
+        <%= site_identity.label :site_name %>
+        <%= site_identity.text_field :site_name, class:'form-control', placeholder:'Site Name', required: 'required', autofocus: 'autofocus' %>
+      </div>
+
+      <div class="form-group">
+        <%= site_identity.label :site_description %>
+        <%= site_identity.text_field :site_description, class:'form-control', placeholder:'Site Description' %>
+      </div>
+
+      <div class="form-group">
+        <%= site_identity.label :site_meta %>
+        <%= site_identity.text_field :site_meta, class:'form-control', placeholder:'Site Meta' %>
+      </div>
+
+        Site Logo
+      <div class="form-group">
+        <%= site_identity.file_field :image %>
+      </div>
+      <div class="form-group">
+        <%= image_tag @site_logo, width: '120px', height: '60px' %>
+        <%= site_identity.submit :Delete, name: 'delete', class: 'btn btn-danger btn-block' %>
+      </div>
+
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-4">
+            <%= site_identity.submit :Save, name: 'save', class: 'btn btn-success btn-block' %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'Back', backend_site_identities_path, class: 'btn btn-secondary btn-block' %>
+          </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="card mx-auto mt-5">
+  <div class="card-header">Store Profile</div>
+  <div class="card-body">
+    <%= form_for [:backend, @user] do | u | %>
+      <div class="form-group">
+        <%= u.label :name %>
+        <%= u.text_field :name, class:'form-control', placeholder:'Name', required: 'required', autofocus: 'autofocus' %>
+      </div>
+
+      <div class="form-group">
+        <%= u.label :email %>
+        <%= u.text_field :email, class:'form-control', placeholder:'Email' %>
+      </div>
+
+      <div class="form-group">
+        <%= u.label :password %>
+        <%= u.password_field :password, class:'form-control', placeholder:'Password' %>
+      </div>
+
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-4">
+            <%= u.submit :Save, name: 'save', class: 'btn btn-success btn-block' %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'Back', backend_users_path, class: 'btn btn-secondary btn-block' %>
+          </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
